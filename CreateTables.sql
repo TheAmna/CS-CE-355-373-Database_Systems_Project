@@ -174,3 +174,9 @@ CREATE TABLE Feedback (
     FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
     FOREIGN KEY (SessionID) REFERENCES Session(SessionID)
 );
+CREATE TABLE Education (
+    EduID      INT IDENTITY(1,1) PRIMARY KEY,
+    TutorID    VARCHAR(50),
+    Education  VARCHAR(50),
+    FOREIGN KEY (TutorID) REFERENCES Tutor(TutorID)
+);

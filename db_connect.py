@@ -5,7 +5,7 @@ def test_tutorify_connection():
     try:
         # Use the same connection string from your previous lab
         server = r'AMNA\MSSQLSERVER2022'
-        database = 'Tutorify'
+        database = 'TutorifyDatabase'
         
         connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
         

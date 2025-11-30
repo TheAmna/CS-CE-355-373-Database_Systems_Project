@@ -3,8 +3,8 @@ import pyodbc
 
 class Database:
     def __init__(self):
-        self.server = r'AMNA\MSSQLSERVER2022'
-        self.database = 'TutorifyDatabase'
+        self.server = r'DESKTOP-81TRJB1\SQLEXPRESS'
+        self.database = 'TutorifyFinal'
         self.connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={self.server};DATABASE={self.database};Trusted_Connection=yes;'
     
     def get_connection(self):
@@ -54,18 +54,33 @@ class Database:
                 conn.close()
         return False
 
-# Test the new database class
+# Test the database class
 if __name__ == "__main__":
     db = Database()
     
     # Test 1: Get all tutors
     tutors = db.execute_query("SELECT * FROM Tutor")
-    print("📚 Tutors:", len(tutors))
+    if tutors:
+        print(f"[TUTORS] Found {len(tutors)} tutors")
+        for tutor in tutors:
+            print(f"  - {tutor}")
+    else:
+        print("[TUTORS] No tutors found or connection error")
     
     # Test 2: Get all students
     students = db.execute_query("SELECT * FROM Student")
-    print("🎓 Students:", len(students))
+    if students:
+        print(f"[STUDENTS] Found {len(students)} students")
+        for student in students:
+            print(f"  - {student}")
+    else:
+        print("[STUDENTS] No students found or connection error")
     
     # Test 3: Get all subjects
     subjects = db.execute_query("SELECT * FROM Subject")
-    print("📖 Subjects:", len(subjects))
+    if subjects:
+        print(f"[SUBJECTS] Found {len(subjects)} subjects")
+        for subject in subjects:
+            print(f"  - {subject}")
+    else:
+        print("[SUBJECTS] No subjects found or connection error")

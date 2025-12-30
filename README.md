@@ -134,17 +134,21 @@ SQL Query 1.C.2:  Tutor login verification
 ```
 SELECT TutorID, Name, Email, Password, Education, Experience, CNIC
 FROM Tutor t
-WHERE t.Email= ‘ak02&gmail.com’ and t.Password= ‘1234ak’;
+WHERE t.Email= ‘ak02&gmail.com’ and t.Password= ‘1234ak’
 ```
 
 SQL QUERY 2.A.1: When user clicks View Results the table is filtered out based on subject
 ```
 
- 		SELECT t.TutorID, t.Name as TutorName, s.Name as Subject, e.Education,  				ISNULL(ROUND(AVG(CAST(f.Rating AS FLOAT)), 2), 0) as Rating
+SELECT  t.TutorID,
+		t.Name as TutorName,
+		s.Name as Subject,
+		e.Education,
+		ISNULL(ROUND(AVG(CAST(f.Rating AS FLOAT)), 2), 0) as Rating
 FROM Tutor t 
 INNER JOIN TutorSubject ts ON t.TutorID = ts.TutorID 
 INNER JOIN Subject s ON 	ts.SubjectID = s.SubjectID
- LEFT JOIN Education e ON t.TutorID = e.TutorID 
+LEFT JOIN Education e ON t.TutorID = e.TutorID 
 LEFT JOIN Feedback 	f ON t.TutorID = f.TutorID
 WHERE  s.Name LIKE '%' + @SubjectName + '%'
 GROUP BY t.TutorID, t.Name, s.Name,  e.Education, t.Experience
@@ -163,9 +167,10 @@ SQL Query 3.A.1: View Tutor Profile
 ```
 SELECT t.TutorID, t.Name,  t.Experience,  e.Education, STRING_AGG(s.Name, ', ') as Subjects 
 FROM Tutor t LEFT
- JOIN Education e ON t.TutorID = e.TutorID
- LEFT JOIN TutorSubject ts ON t.TutorID = ts.TutorID
- LEFT JOIN Subject s ON ts.SubjectID = s.SubjectID WHERE t.TutorID = 'T001' 
+JOIN Education e ON t.TutorID = e.TutorID
+LEFT JOIN TutorSubject ts ON t.TutorID = ts.TutorID
+LEFT JOIN Subject s ON ts.SubjectID = s.SubjectID
+WHERE t.TutorID = 'T001' 
 GROUP BY t.TutorID, t.Name, t.Email, t.Experience, t.CNIC, e.Education;
 ```
 
@@ -173,28 +178,36 @@ SQL Query 3.A.2: Update Tutor Name
 
 ```
 UPDATE Tutor
-SET Name = 'Amna Khan Updated' WHERE TutorID = 'T001';
+SET Name = 'Amna Khan Updated'
+WHERE TutorID = 'T001';
 ```
 SQL Query 3.A.3: Update Tutor Experience 	
 
 ```
 UPDATE Tutor
-SET Experience = '3 years' WHERE TutorID = 'T001';
+SET Experience = '3 years'
+WHERE TutorID = 'T001';
 ```
 
 SQL Query 3.A.4: Update Tutor Education 
 ```
 UPDATE Education
-SET Education = 'BCS' WHERE TutorID = 'T001';
+SET Education = 'BCS'
+WHERE TutorID = 'T001';
 ```
 
 SQL Query 3.B.1: View Pending Session Requests 
 ```
-SELECT s.SessionID , T.Name as TutorName , S.Name as StudentName , sub.Name as Subject , s.Date/time , s.Status
+SELECT  s.SessionID ,
+		T.Name as TutorName ,
+		S.Name as StudentName ,
+		sub.Name as Subject ,
+		s.Date/time ,
+		s.Status
 FROM Session s
- JOIN Tutor t ON t.TutorID = s.TutorID 
+JOIN Tutor t ON t.TutorID = s.TutorID 
 JOIN Student st ON st.StudentID = s.SessionID 
- JOIN Subject sub ON sub.SubjectID = s.SubjectID 
+JOIN Subject sub ON sub.SubjectID = s.SubjectID 
 WHERE s.Status = ‘Pending’
 ```
 
@@ -217,8 +230,14 @@ WHERE SessionID = 'SES001' AND TutorID = 'T001' AND Status = 'Pending'
 
 SQL Query 4.A.1: This query looks for  all scheduled sessions for the current tutor to populate the tableSessions 
 ```
-SELECT t.full_name AS Tutor_Name, s.full_name AS Student_Name, ses.subject, ses.session_date AS Date, ses.time_slot, ses.hours, ses.status
- FROM Sessions ses INNER JOIN Tutors t ON ses.tutor_id = t.tutor_id 
+SELECT  t.full_name AS Tutor_Name,
+		s.full_name AS Student_Name,
+		ses.subject,
+		ses.session_date AS Date,
+		ses.time_slot,
+		ses.hours,
+		ses.status
+FROM Sessions ses INNER JOIN Tutors t ON ses.tutor_id = t.tutor_id 
 INNER JOIN Students s ON ses.student_id = s.student_id 
 WHERE ses.tutor_id = ‘t1324’
 ORDER BY ses.session_date DESC
@@ -260,7 +279,9 @@ WHERE tutor_id = 789
 - Whenever I used to purchase something online, I used to wonder about the technology behind all these systems. This project introduced me to the world of integrating front-end with back-end systems. It gave me hands-on-experience as I worked on the Graphical User Interface (GUI) on QTDesigner and combined it with Python and MSSQL Database.
   
 - The process starts with the user selected the role: student or teacher. Based on the selection, the system proceeds forward. For student, the system displays the student dashboard. Student enters his requirement such as the subject, date/timing, educational level. He clicks on search. The click on the push button view schedules is integrated with Python code. At the back-end it the python code searches the MSSQL database, it finds the Tutor table and runs an SQL query to find the avaible tutors at that particular timing, teaching that course at that academic level. The Query result is then returned back and displayed in the table on the screen as the front-end display. It is amazing how all of this happens in milli seconds !
-The student then schedules the session and can proceed to the Session Management page where he can check the status of his scheduled session (pending, approved/completeted).
+The student then schedules the session and can proceed to the Session Management page where he can check the status of his scheduled session (pending, approved/completeted). Once the session has been marked completed, only then the student can land on the feedback page after pressing the 'Give Feedback' pushbutton.
+
+- In a nutshell, this project helped me understand the complete flow of a real-world application. From user input on the front-end, processing logic in Python, fetching and updating data in a database, and finally showing results back to the user. It showed me how different parts like GUI, backend code, and database work together smoothly to create a working system.
 
 
 

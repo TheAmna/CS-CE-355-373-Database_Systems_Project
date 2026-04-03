@@ -42,7 +42,7 @@ Our project Tutorify is a community-driven online tutoring platform in Pakistan.
 
 ## Entity Relationship Diagram 
 
-<img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/b2907013-d5aa-4b38-add8-581a02c5c35a" />
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/b2907013-d5aa-4b38-add8-581a02c5c35a" />
 
 
 
@@ -50,7 +50,7 @@ Our project Tutorify is a community-driven online tutoring platform in Pakistan.
 ## Relation Schema 
 
 
-<img width="900" height="700" alt="Screenshot 2025-11-09 143047" src="https://github.com/user-attachments/assets/857872d2-09c1-4268-a717-d8b530f10ad6" />
+<img width="600" height="600" alt="Screenshot 2025-11-09 143047" src="https://github.com/user-attachments/assets/857872d2-09c1-4268-a717-d8b530f10ad6" />
 
 
 
